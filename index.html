@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>استمارة التسجيل - Smart School Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- مهم للتجاوب -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body dir="rtl">
+
+  <form id="regForm">
+    <div class="lang-select">
+      <label>🌐 اختر اللغة / Choisir la langue / Choose Language:</label>
+      <select id="lang" onchange="setLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <h2 id="form_title">استمارة التسجيل في مدرسة Smart School Tech</h2>
+    
+    <label id="lbl_fullname">الاسم و اللقب:</label>
+    <input type="text" name="fullname" required>
+    
+    <label id="lbl_dob">تاريخ الميلاد:</label>
+    <input type="date" name="dob" required>
+    
+    <label id="lbl_pob">مكان الميلاد:</label>
+    <input type="text" name="pob" required>
+    
+    <label id="lbl_gender">الجنس:</label>
+    <select name="gender" id="gender" required></select>
+    
+    <label id="lbl_grade">المستوى الدراسي:</label>
+    <input type="text" name="grade" required>
+    
+    <label id="lbl_prev_school">المدرسة السابقة:</label>
+    <input type="text" name="prev_school">
+    
+    <hr>
+    <label id="lbl_parent">اسم ولي الأمر:</label>
+    <input type="text" name="parent_name" required>
+    
+    <label id="lbl_relation">صلة القرابة:</label>
+    <select name="relation" id="relation" required></select>
+    
+    <label id="lbl_job">المهنة:</label>
+    <input type="text" name="job">
+    
+    <label id="lbl_phone">رقم الهاتف:</label>
+    <input type="tel" name="phone" required>
+    
+    <label id="lbl_email">البريد الإلكتروني:</label>
+    <input type="email" name="email">
+    
+    <label id="lbl_address">العنوان:</label>
+    <textarea name="address"></textarea>
+    
+    <label id="lbl_health">هل يعاني التلميذ من مشاكل صحية؟</label>
+    <select name="health" id="health"></select>
+    
+    <label id="lbl_health_details">إذا نعم يرجى التوضيح:</label>
+    <textarea name="health_details"></textarea>
+
+    <hr>
+    <label id="lbl_subjects">المواد التي يرغب في الدعم فيها (اختياري):</label>
+    <textarea name="support_subjects" placeholder="مثال: رياضيات، فيزياء، لغة إنجليزية..."></textarea>
+    
+    <button type="submit" id="btn_submit">إرسال</button>
+  </form>
+
+  <script>
+    const translations = {
+      ar: {
+        dir: "rtl",
+        form_title: "استمارة التسجيل في مدرسة Smart School Tech",
+        lbl_fullname: "الاسم و اللقب:",
+        lbl_dob: "تاريخ الميلاد:",
+        lbl_pob: "مكان الميلاد:",
+        lbl_gender: "الجنس:",
+        genders: ["ذكر", "أنثى"],
+        lbl_grade: "المستوى الدراسي:",
+        lbl_prev_school: "المدرسة السابقة:",
+        lbl_parent: "اسم ولي الأمر:",
+        lbl_relation: "صلة القرابة:",
+        relations: ["الأب", "الأم", "ولي أمر آخر"],
+        lbl_job: "المهنة:",
+        lbl_phone: "رقم الهاتف:",
+        lbl_email: "البريد الإلكتروني:",
+        lbl_address: "العنوان:",
+        lbl_health: "هل يعاني التلميذ من مشاكل صحية؟",
+        health: ["لا", "نعم"],
+        lbl_health_details: "إذا نعم يرجى التوضيح:",
+        lbl_subjects: "المواد التي يرغب في الدعم فيها (اختياري):",
+        btn_submit: "إرسال"
+      },
+      fr: {
+        dir: "ltr",
+        form_title: "Formulaire d'inscription - Smart School Tech",
+        lbl_fullname: "Nom et prénom :",
+        lbl_dob: "Date de naissance :",
+        lbl_pob: "Lieu de naissance :",
+        lbl_gender: "Sexe :",
+        genders: ["Homme", "Femme"],
+        lbl_grade: "Niveau scolaire :",
+        lbl_prev_school: "École précédente :",
+        lbl_parent: "Nom du tuteur :",
+        lbl_relation: "Lien de parenté :",
+        relations: ["Père", "Mère", "Autre tuteur"],
+        lbl_job: "Profession :",
+        lbl_phone: "Numéro de téléphone :",
+        lbl_email: "Email :",
+        lbl_address: "Adresse :",
+        lbl_health: "L'élève a-t-il des problèmes de santé ?",
+        health: ["Non", "Oui"],
+        lbl_health_details: "Si oui, précisez :",
+        lbl_subjects: "Matières à renforcer (facultatif) :",
+        btn_submit: "Envoyer"
+      },
+      en: {
+        dir: "ltr",
+        form_title: "Registration Form - Smart School Tech",
+        lbl_fullname: "Full Name:",
+        lbl_dob: "Date of Birth:",
+        lbl_pob: "Place of Birth:",
+        lbl_gender: "Gender:",
+        genders: ["Male", "Female"],
+        lbl_grade: "Grade Level:",
+        lbl_prev_school: "Previous School:",
+        lbl_parent: "Parent/Guardian Name:",
+        lbl_relation: "Relationship:",
+        relations: ["Father", "Mother", "Other Guardian"],
+        lbl_job: "Occupation:",
+        lbl_phone: "Phone Number:",
+        lbl_email: "Email:",
+        lbl_address: "Address:",
+        lbl_health: "Does the student have health issues?",
+        health: ["No", "Yes"],
+        lbl_health_details: "If yes, please explain:",
+        lbl_subjects: "Subjects for support (optional):",
+        btn_submit: "Submit"
+      }
+    };
+
+    function setLanguage(lang) {
+      const t = translations[lang];
+      document.body.dir = t.dir;
+      document.getElementById("form_title").innerText = t.form_title;
+      document.getElementById("lbl_fullname").innerText = t.lbl_fullname;
+      document.getElementById("lbl_dob").innerText = t.lbl_dob;
+      document.getElementById("lbl_pob").innerText = t.lbl_pob;
+      document.getElementById("lbl_gender").innerText = t.lbl_gender;
+      document.getElementById("lbl_grade").innerText = t.lbl_grade;
+      document.getElementById("lbl_prev_school").innerText = t.lbl_prev_school;
+      document.getElementById("lbl_parent").innerText = t.lbl_parent;
+      document.getElementById("lbl_relation").innerText = t.lbl_relation;
+      document.getElementById("lbl_job").innerText = t.lbl_job;
+      document.getElementById("lbl_phone").innerText = t.lbl_phone;
+      document.getElementById("lbl_email").innerText = t.lbl_email;
+      document.getElementById("lbl_address").innerText = t.lbl_address;
+      document.getElementById("lbl_health").innerText = t.lbl_health;
+      document.getElementById("lbl_health_details").innerText = t.lbl_health_details;
+      document.getElementById("lbl_subjects").innerText = t.lbl_subjects;
+      document.getElementById("btn_submit").innerText = t.btn_submit;
+
+      // خيارات الجنس
+      const genderSelect = document.getElementById("gender");
+      genderSelect.innerHTML = "";
+      t.genders.forEach(g => {
+        const opt = document.createElement("option");
+        opt.value = g;
+        opt.textContent = g;
+        genderSelect.appendChild(opt);
+      });
+
+      // خيارات القرابة
+      const relationSelect = document.getElementById("relation");
+      relationSelect.innerHTML = "";
+      t.relations.forEach(r => {
+        const opt = document.createElement("option");
+        opt.value = r;
+        opt.textContent = r;
+        relationSelect.appendChild(opt);
+      });
+
+      // خيارات الصحة
+      const healthSelect = document.getElementById("health");
+      healthSelect.innerHTML = "";
+      t.health.forEach(h => {
+        const opt = document.createElement("option");
+        opt.value = h;
+        opt.textContent = h;
+        healthSelect.appendChild(opt);
+      });
+    }
+
+    // اللغة الافتراضية
+    setLanguage("ar");
+
+    document.getElementById("regForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      let formData = new FormData(this);
+      let data = {};
+      formData.forEach((value, key) => { data[key] = value });
+
+      await fetch("https://mo7ammedabdesslam.app.n8n.cloud/webhook/d4cdac9b-675d-48f9-9d5a-c81a5c0c178a", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      alert("✅ تم إرسال البيانات بنجاح / Données envoyées avec succès / Data submitted successfully");
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
