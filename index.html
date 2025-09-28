@@ -5,8 +5,14 @@
   <title>استمارة التسجيل - Smart School Tech</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- مهم للتجاوب -->
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body dir="rtl">
+ 
+ <!-- شعار المدرسة -->
+    <div class="logo">
+      <img src="Smart School Tech.png" alt="Smart School Tech Logo">
+    </div>
 
   <form id="regForm">
     <div class="lang-select">
@@ -32,6 +38,9 @@
     <label id="lbl_gender">الجنس:</label>
     <select name="gender" id="gender" required></select>
     
+    <label id="lbl_subjects">المواد التي يرغب في الدعم فيها او دَوْرات:</label>
+    <textarea name="support_subjects" placeholder="مثال: رياضيات، فيزياء، لغة إنجليزية..."></textarea>
+
     <label id="lbl_grade">المستوى الدراسي:</label>
     <input type="text" name="grade" required>
     
@@ -42,6 +51,9 @@
     <label id="lbl_parent">اسم ولي الأمر:</label>
     <input type="text" name="parent_name" required>
     
+    <label id="lbl_phone">رقم الهاتف:</label>
+    <input type="tel" name="phone" required>
+
     <label id="lbl_relation">صلة القرابة:</label>
     <select name="relation" id="relation" required></select>
     
@@ -64,8 +76,7 @@
     <textarea name="health_details"></textarea>
 
     <hr>
-    <label id="lbl_subjects">المواد التي يرغب في الدعم فيها (اختياري):</label>
-    <textarea name="support_subjects" placeholder="مثال: رياضيات، فيزياء، لغة إنجليزية..."></textarea>
+    
     
     <button type="submit" id="btn_submit">إرسال</button>
   </form>
@@ -92,7 +103,7 @@
         lbl_health: "هل يعاني التلميذ من مشاكل صحية؟",
         health: ["لا", "نعم"],
         lbl_health_details: "إذا نعم يرجى التوضيح:",
-        lbl_subjects: "المواد التي يرغب في الدعم فيها (اختياري):",
+        lbl_subjects: "المواد التي يرغب في الدعم فيها او دَوْرات:",
         btn_submit: "إرسال"
       },
       fr: {
@@ -115,7 +126,7 @@
         lbl_health: "L'élève a-t-il des problèmes de santé ?",
         health: ["Non", "Oui"],
         lbl_health_details: "Si oui, précisez :",
-        lbl_subjects: "Matières à renforcer (facultatif) :",
+        lbl_subjects: "Matières ou cours dans lesquels il souhaite un soutien:",
         btn_submit: "Envoyer"
       },
       en: {
@@ -138,7 +149,7 @@
         lbl_health: "Does the student have health issues?",
         health: ["No", "Yes"],
         lbl_health_details: "If yes, please explain:",
-        lbl_subjects: "Subjects for support (optional):",
+        lbl_subjects: "Subjects or courses he wants support in:",
         btn_submit: "Submit"
       }
     };
@@ -213,6 +224,7 @@
       alert("✅ تم إرسال البيانات بنجاح / Données envoyées avec succès / Data submitted successfully");
       this.reset();
     });
+     
   </script>
 
 </body>
