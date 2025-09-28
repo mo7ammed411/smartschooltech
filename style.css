@@ -45,7 +45,7 @@
     }
 
     button {
-      background: #20034e;
+      background: hsl(191, 64%, 31%);
       color: white;
       font-size: 1.1rem;
       cursor: pointer;
@@ -53,7 +53,7 @@
     }
 
     button:hover {
-      background: #2b2e2b;
+      background: #092e58;
     }
 
     .lang-select {
@@ -67,6 +67,18 @@
       border: none;
       border-top: 1px solid #eee;
     }
+    /* نخلي الشعار في الأعلى وموسّط */
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* يوسط أفقياً */
+  margin: 15px 0; /* مسافة من فوق وتحت */
+}
+
+.logo img {
+  max-width: 300px; /* حجم الشعار */
+  height: auto;
+}
 
     /* ====== تجاوب الهواتف ====== */
     @media (max-width: 600px) {
@@ -86,5 +98,8 @@
       label, input, select, textarea, button {
         font-size: 0.95rem;
       }
-    }
-  
+        /* نصغر اللوغو في الهاتف */
+  .logo img {
+    max-width: 200px;
+  }
+}
